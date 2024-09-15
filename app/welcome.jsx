@@ -3,11 +3,13 @@ import React from 'react';
 import ScreenWrapper from '../components/ScreenWrapper';
 import { StatusBar } from 'expo-status-bar';
 import { hp, wp } from '../helpers/common';
-import { ThemeProvider } from '@react-navigation/native';
+import { ThemeProvider, useRoute } from '@react-navigation/native';
 import { theme } from '../constants/theme';
 import Button from '../components/Botton';
+import { useRouter } from 'expo-router';
 
 const Welcome = () => {
+    const router = useRouter();
   return (
     <ScreenWrapper bg="white">
       <StatusBar style="dark" />
@@ -28,14 +30,14 @@ const Welcome = () => {
           <Button
             title="Getting Started"
             buttonStyle={{ marginHorizontal: wp(3) }}
-            onPress={() => {}}
+            onPress={() => router.push('signUp')}
           />
         </View>
           <View style={styles.bottomTextContainer}>
             <Text style={styles.loginText}>
               Already have an account!
             </Text>
-            <Pressable>
+            <Pressable onPress={() => router.push('login')}>
               <Text style={[styles.loginText, { color: theme.colors.primaryDark, fontWeight: theme.fonts.semibold }]}>
                 Login
               </Text>
