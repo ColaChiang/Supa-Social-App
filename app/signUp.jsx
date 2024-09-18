@@ -20,7 +20,7 @@ const SignUp = () => {
     const [loading, setLoading] = useState(false);
 
     const onSubmit = async () => {
-        if (!emailRef.current || !passwordRef.current) {
+        if (!emailRef.current || !passwordRef.current || !nameRef.current) {
             Alert.alert('Sign Up', 'Please fill all the fields!');
             return;
         }
