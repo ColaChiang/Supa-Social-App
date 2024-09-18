@@ -22,8 +22,23 @@ const Login = () => {
             Alert.alert('Login', 'Please fill all the fields!');
             return;
           }
-          // good to go
-    };
+         
+        // let email = emailRef.current.trim();
+        // let password = passwordRef.current.trim();
+        // setLoading(true);
+
+        // const {error} = await supabase.auth.signInWithPassword({
+        //     email,
+        //     password
+        // });
+
+        // setLoading(false);
+
+        // console.log('error', error);
+        // if (error) {
+        //     Alert.alert('Login', error.message);
+        // }
+};
   return (
     <ScreenWrapper style="white" >
         <StatusBar style="dark" />

@@ -1,4 +1,4 @@
-import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Alert, Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 import React, { useRef, useState } from 'react';
 import ScreenWrapper from '../components/ScreenWrapper';
 import Home from '../assets/icons/Home';
@@ -21,7 +21,7 @@ const SignUp = () => {
 
     const onSubmit = async () => {
         if (!emailRef.current || !passwordRef.current) {
-            Alert.alert('SignUp', 'Please fill all the fields!');
+            Alert.alert('Sign Up', 'Please fill all the fields!');
             return;
         }
         
@@ -33,7 +33,13 @@ const SignUp = () => {
 
         const { data: { session }, error } = await supabase.auth.signUp({
             email,
-            password
+            password,
+            options: {
+                data: { 
+                    name 
+                }
+            }
+            
         });
 
         setLoading(false);
