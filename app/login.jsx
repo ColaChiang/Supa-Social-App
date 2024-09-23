@@ -1,4 +1,4 @@
-import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Alert, Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 import React, { useRef, useState } from 'react';
 import ScreenWrapper from '../components/ScreenWrapper';
 import Home from '../assets/icons/Home';
@@ -10,6 +10,7 @@ import { wp, hp } from '../helpers/common';
 import Input from '../components/Input';
 import Icon from '../assets/icons';
 import Button from '../components/Botton';
+import { supabase } from '../lib/supabase';
 
 const Login = () => {
     const router = useRouter();
@@ -17,28 +18,28 @@ const Login = () => {
     const passwordRef = useRef("");
     const [loading, setLoading] = useState(false);
 
-    const onSubmit = () => {
+    const onSubmit = async () => {
         if (!emailRef.current || !passwordRef.current) {
             Alert.alert('Login', 'Please fill all the fields!');
             return;
           }
          
-        // let email = emailRef.current.trim();
-        // let password = passwordRef.current.trim();
-        // setLoading(true);
+        let email = emailRef.current.trim();
+        let password = passwordRef.current.trim();
+        setLoading(true);
 
-        // const {error} = await supabase.auth.signInWithPassword({
-        //     email,
-        //     password
-        // });
+        const {error} = await supabase.auth.signInWithPassword({
+            email,
+            password
+        });
 
-        // setLoading(false);
+        setLoading(false);
 
-        // console.log('error', error);
-        // if (error) {
-        //     Alert.alert('Login', error.message);
-        // }
-};
+         console.log('error', error);
+        if (error) {
+            Alert.alert('Login', error.message);
+        }
+    }
   return (
     <ScreenWrapper style="white" >
         <StatusBar style="dark" />
